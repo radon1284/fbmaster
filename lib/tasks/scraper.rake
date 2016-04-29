@@ -7,16 +7,17 @@ namespace :scraper do
 	# require 'omniauth'
 	require 'json'
 
-	app_id = '570544799790506'
-	app_secret = '988c949cead262144c43ae05bf587a4e'
+	app_id = ENV['app_id']
+	app_secret = ENV['app_secret']
+	search_content = ENV['searc_content']
 
-	access_token = 'EAACEdEose0cBAHl7gi53oYDmk67mGf32ZCkVTLXnHkMnn4UpKC5PWb7cYaX9pCaHJ87q7B5FEceWwTu9k7n9V2G7lqvRYXkhDc1FY8c8ZCcvkeoct4Q4sp9UhnDbMgVKAqaJ1vlOg8WhMzND7q5EV2rYVKNkk6MZC7JaFH6VQZDZD'
+	access_token = ENV['access_token']
 
 
 	graph = Koala::Facebook::API.new(access_token)
 	group = graph.fql_query('SELECT gid, name, creator, description, privacy, website, email, icon50, icon
 	FROM   group
-	WHERE  CONTAINS("jobs")')
+	WHERE  CONTAINS("#{search_content}")')
 
 	# puts user
 
