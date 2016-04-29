@@ -10,13 +10,13 @@ namespace :scraper do
 	app_id = '570544799790506'
 	app_secret = '988c949cead262144c43ae05bf587a4e'
 
-	access_token = 'EAACEdEose0cBAHV5QZCqhFO0RFpzZC0ePDJeZALZBcYhKZCVgFdm7l09830McDFgOdg6qZCTDWHCeU6lcSPShU4HpAZAN2ZANZBPsOgYsn3VGaDTr5bZCgQtkObeF1ZBOeSTyUfv6BSr8sCdH9ZBA19J36zfzq3XOmBXpAXKezPbwbrqCgZDZD'
+	access_token = 'EAACEdEose0cBAHl7gi53oYDmk67mGf32ZCkVTLXnHkMnn4UpKC5PWb7cYaX9pCaHJ87q7B5FEceWwTu9k7n9V2G7lqvRYXkhDc1FY8c8ZCcvkeoct4Q4sp9UhnDbMgVKAqaJ1vlOg8WhMzND7q5EV2rYVKNkk6MZC7JaFH6VQZDZD'
 
 
 	graph = Koala::Facebook::API.new(access_token)
 	group = graph.fql_query('SELECT gid, name, creator, description, privacy, website, email, icon50, icon
 	FROM   group
-	WHERE  CONTAINS("real property")')
+	WHERE  CONTAINS("jobs")')
 
 	# puts user
 
