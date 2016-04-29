@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @group.user %>
+</p>
+
+<p>
+  <strong>Gid:</strong>
+  <%= @group.gid %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @group.name %>
+</p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @group.creator %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @group.description %>
+</p>
+
+<p>
+  <strong>Privacy:</strong>
+  <%= @group.privacy %>
+</p>
+
+<p>
+  <strong>Website:</strong>
+  <%= @group.website %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @group.email %>
+</p>
+
+<p>
+  <strong>Icon50:</strong>
+  <%= @group.icon50 %>
+</p>
+
+<p>
+  <strong>Icon:</strong>
+  <%= @group.icon %>
+</p>
+
+<%= link_to 'Edit', edit_group_path(@group) %> |
+<%= link_to 'Back', groups_path %>
