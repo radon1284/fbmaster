@@ -1,26 +1,28 @@
-<h1>Listing groups</h1>
-
-<table>
+<%- model_class = Group -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Group %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>User</th>
-      <th>Gid</th>
-      <th>Name</th>
-      <th>Creator</th>
-      <th>Description</th>
-      <th>Privacy</th>
-      <th>Website</th>
-      <th>Email</th>
-      <th>Icon50</th>
-      <th>Icon</th>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th><%= model_class.human_attribute_name(:gid) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:creator) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:privacy) %></th>
+      <th><%= model_class.human_attribute_name(:website) %></th>
+      <th><%= model_class.human_attribute_name(:email) %></th>
+      <th><%= model_class.human_attribute_name(:icon50) %></th>
+      <th><%= model_class.human_attribute_name(:icon) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @groups.each do |group| %>
       <tr>
-        <td><%= group.user %></td>
+        <td><%= group.id %></td>
         <td><%= group.gid %></td>
         <td><%= group.name %></td>
         <td><%= group.creator %></td>
@@ -30,14 +32,21 @@
         <td><%= group.email %></td>
         <td><%= group.icon50 %></td>
         <td><%= group.icon %></td>
-        <td><%= link_to 'Show', group %></td>
-        <td><%= link_to 'Edit', edit_group_path(group) %></td>
-        <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l group.created_at, format: :long %></td>
+        <td>
+          <%= link_to group_path(group), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to group_path(group), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Group', new_group_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_group_path,
+            :class => 'btn btn-primary' %>
