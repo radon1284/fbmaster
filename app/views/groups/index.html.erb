@@ -4,35 +4,20 @@
 </div>
 <table class="table table-striped">
   <thead>
-    <tr>
-      <th>ID</th>
-      <th><%= model_class.human_attribute_name(:gid) %></th>
+    <tr> 
+      <th>Icon</th>     
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:creator) %></th>
-      <th><%= model_class.human_attribute_name(:description) %></th>
       <th><%= model_class.human_attribute_name(:privacy) %></th>
-      <th><%= model_class.human_attribute_name(:website) %></th>
-      <th><%= model_class.human_attribute_name(:email) %></th>
-      <th><%= model_class.human_attribute_name(:icon50) %></th>
-      <th><%= model_class.human_attribute_name(:icon) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @groups.each do |group| %>
       <tr>
-        <td><%= group.id %></td>
-        <td><%= group.gid %></td>
-        <td><%= group.name %></td>
-        <td><%= group.creator %></td>
-        <td><%= group.description %></td>
+        <td><%= image_tag group.icon50 %></td>
+        <td><%= link_to group.name, "https://www.facebook.com/groups/#{group.gid}", target: "blank" %></td>
         <td><%= group.privacy %></td>
-        <td><%= group.website %></td>
-        <td><%= group.email %></td>
-        <td><%= group.icon50 %></td>
-        <td><%= group.icon %></td>
-        <td><%=l group.created_at, format: :long %></td>
         <td>
           <%= link_to group_path(group), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
             <%= glyph 'info-sign' %>
