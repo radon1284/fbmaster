@@ -2,36 +2,20 @@
 <div class="page-header">
   <h1><%=t '.title', :default => Group %></h1>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr> 
-      <th>Icon</th>     
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:privacy) %></th>
-      
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @groups.each do |group| %>
-      <tr>
-        <td><%= image_tag group.icon50 %></td>
-        <td><%= link_to group.name, "https://www.facebook.com/groups/#{group.gid}", target: "blank" %></td>
-        <td><%= group.privacy %></td>
-        <td>
-          <%= link_to group_path(group), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
-            <%= glyph 'info-sign' %>
-            <%= glyph 'pencil' %>
-          <%- end -%>
-          <%= link_to group_path(group), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
-            <%= glyph 'remove' %>
-          <%- end -%>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_group_path,
-            :class => 'btn btn-primary' %>
+<ul class="list-group">
+<% @groups.each do |group| %>
+  
+    <li class="list-group-item">
+    <%= image_tag group.icon50 %> <%= link_to group.name, "https://www.facebook.com/groups/#{group.gid}", target: "blank" %>
+    <% if group.user == current_user %> <span class="pull-right"><%= link_to group_path(group), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+              <%= glyph 'info-sign' %>
+              <%= glyph 'pencil' %>
+            <%- end -%>
+            <%= link_to group_path(group), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+              <%= glyph 'remove' %>
+            <%- end -%></span><% end %>
+    </li>
+  
+<% end %>
+</ul>
+<%= will_paginate @groups, renderer: BootstrapPagination::Rails %>

@@ -4,11 +4,12 @@ class GroupsController < ApplicationController
   before_filter :require_user_signed_in, only: [:new, :edit, :create, :update, :destroy]
 
   before_action :set_group, only: [:show, :edit, :update, :destroy, :vote]
+  # before_filter :authenticate_user!
 
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.all
+    @groups = Group.paginate(:page => params[:page], :per_page => 20)
   end
 
   # GET /groups/1
