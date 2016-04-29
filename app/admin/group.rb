@@ -1,4 +1,5 @@
 ActiveAdmin.register Group do
+  permit_params :gid, :name, :creator, :description, :privacy, :website, :email, :icon50, :icon
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
