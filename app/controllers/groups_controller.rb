@@ -15,17 +15,17 @@ class GroupsController < ApplicationController
 
 # Iterate on each grouped item to destroy duplicate
 
-  @dupicate.each do |key, value|
+  # @dupicate.each do |key, value|
 
-    # Keep one and return rest of the duplicate records
+  #   # Keep one and return rest of the duplicate records
 
-    duplicates = Group.where(gid: key)[1..value-1]
+  #   duplicates = Group.where(gid: key)[1..value-1]
 
-    # puts "#{key} = #{duplicates.count}"
+  #   # puts "#{key} = #{duplicates.count}"
 
-    # Destroy duplicates and their dependents
+  #   # Destroy duplicates and their dependents
 
-    duplicates.each(&:destroy)
+  #   duplicates.each(&:destroy)
 
   end 
 
