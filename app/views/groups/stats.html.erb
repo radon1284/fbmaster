@@ -20,3 +20,19 @@
 		</div>
 	</div>
 </div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">Number of Duplicates</h3>
+		  </div>
+		  <div class="panel-body">
+		  <ul class="list-group">
+		    <% @dupicate.each do |k, v| %>
+				<li class="list-group-item"><span class="badge"><%= v %></span> <%= k %></li>
+		    <% end %>
+		    </ul>
+		  </div>
+		</div>
+	</div>
+</div>

@@ -9,7 +9,7 @@ class GroupsController < ApplicationController
   def stats
     @close_group = Group.where(privacy: 'CLOSED').count
     @open_group = Group.where(privacy: 'OPEN').count
-    # @dupicate = Group.group("gid").count
+    @dupicate = Group.group("gid").count
   end
 
   # GET /groups
