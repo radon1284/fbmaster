@@ -9,7 +9,27 @@ class GroupsController < ApplicationController
   def stats
     @close_group = Group.where(privacy: 'CLOSED').count
     @open_group = Group.where(privacy: 'OPEN').count
-    @dupicate = Group.group("gid").having("count(*) > 1").count
+    @dupicate = Group.group(:gid).having("count(*) > 1").count(:gid)
+
+
+
+# Iterate on each grouped item to destroy duplicate
+
+  @dupicate.each do |key, value|
+
+    # Keep one and return rest of the duplicate records
+
+    duplicates = Group.where(gid: key)[1..value-1]
+
+    # puts "#{key} = #{duplicates.count}"
+
+    # Destroy duplicates and their dependents
+
+    duplicates.each(&:destroy)
+
+  end 
+
+
   end
 
   # GET /groups
