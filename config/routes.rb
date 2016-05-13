@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   resources :categories
 
+  get 'stats' => "groups#stats"
+
   resources :groups do
   #->Prelang (voting/acts_as_votable)
   member do

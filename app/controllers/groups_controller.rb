@@ -6,6 +6,12 @@ class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy, :vote]
   # before_filter :authenticate_user!
 
+  def stats
+    @close_group = Group.where(privacy: 'CLOSED').count
+    @open_group = Group.where(privacy: 'OPEN').count
+    # @dupicate = Group.group("gid").count
+  end
+
   # GET /groups
   # GET /groups.json
   def index
@@ -20,6 +26,7 @@ class GroupsController < ApplicationController
   # GET /groups/new
   def new
     @group = Group.new
+    
   end
 
   # GET /groups/1/edit
