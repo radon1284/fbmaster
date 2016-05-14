@@ -7,9 +7,9 @@ class GroupsController < ApplicationController
   # before_filter :authenticate_user!
 
   def stats
-    @close_group = Group.where(privacy: 'CLOSED').count
-    @open_group = Group.where(privacy: 'OPEN').count
-    @dupicate = Group.group(:gid).having("count(*) > 1").count(:gid)
+    @close_group = Group.where(privacy: 'CLOSED').uniq.pluck(:gid).count
+    @open_group = Group.where(privacy: 'OPEN').uniq.pluck(:gid).count
+    @dupicate = Group.group(:gid).having("count(*) > 1").uniq.pluck(:gid).count(:gid)
 
 
 
