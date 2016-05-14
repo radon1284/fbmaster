@@ -27,7 +27,7 @@ class GroupsController < ApplicationController
 
   #   duplicates.each(&:destroy)
 
-  end 
+  # end 
 
 
   end
